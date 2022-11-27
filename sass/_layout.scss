@@ -1,6 +1,8 @@
 main {
     width: 100vw;
     height: 100vh;
+    background-color: var(--color-main-background);
+    padding: 2rem;
 
     display: flex;
     align-items: center;
@@ -12,6 +14,14 @@ main {
 .attribution {
     position: absolute;
     bottom: 0;
-    left: 50vw;
-    transform: translateX(-50%);
+    width: 100vw;
+    text-align: center;
+    font-size: 11px; 
+    text-align: center;
+    font-weight: 400;
+    color: var(--color-text-main); 
+
+    a { 
+        color: var(--color-text-main); 
+    }
 }

@@ -13,7 +13,18 @@
 
 html {
     font-size: 62.5%;
-    background-color: var(--color-main-background);
+
+    @media (max-width: 495px) {
+        font-size: 50%;
+    }
+
+    @media (max-width: 389px) {
+        font-size: 45%;
+    }
+
+    @media (max-width: 338px) {
+        font-size: 40%;
+    }
 }
 
 body {
