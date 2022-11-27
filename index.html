@@ -6,6 +6,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="sass/main.scss">
+  <script defer src="scripts.js"></script>
   
   <title>Frontend Mentor | Calculator app</title>
 </head>
@@ -29,24 +30,24 @@
           </div>
         </div>
       </div>
-      <div class="screen">399,981</div>
+      <div class="screen">0</div>
       <div class="keyboard">
-        <div class="keyboard__key" id="key-7">7</div>
-        <div class="keyboard__key" id="key-8">8</div>
-        <div class="keyboard__key" id="key-9">9</div>
-        <div class="keyboard__key" id="key-del">DEL</div>
-        <div class="keyboard__key" id="key-4">4</div>
-        <div class="keyboard__key" id="key-5">5</div>
-        <div class="keyboard__key" id="key-6">6</div>
-        <div class="keyboard__key" id="key-add">+</div>
-        <div class="keyboard__key" id="key-1">1</div>
-        <div class="keyboard__key" id="key-2">2</div>
-        <div class="keyboard__key" id="key-3">3</div>
-        <div class="keyboard__key" id="key-sub">-</div>
-        <div class="keyboard__key" id="key-dot">.</div>
-        <div class="keyboard__key" id="key-0">0</div>
-        <div class="keyboard__key" id="key-div">/</div>
-        <div class="keyboard__key" id="key-mul">x</div>
+        <div class="keyboard__key" data-num="7" id="key-7">7</div>
+        <div class="keyboard__key" data-num="8" id="key-8">8</div>
+        <div class="keyboard__key" data-num="9" id="key-9">9</div>
+        <div class="keyboard__key" data-op="del" id="key-del">DEL</div>
+        <div class="keyboard__key" data-num="4" id="key-4">4</div>
+        <div class="keyboard__key" data-num="5" id="key-5">5</div>
+        <div class="keyboard__key" data-num="6" id="key-6">6</div>
+        <div class="keyboard__key" data-op="add" id="key-add">+</div>
+        <div class="keyboard__key" data-num="1" id="key-1">1</div>
+        <div class="keyboard__key" data-num="2" id="key-2">2</div>
+        <div class="keyboard__key" data-num="3" id="key-3">3</div>
+        <div class="keyboard__key" data-op="sub" id="key-sub">-</div>
+        <div class="keyboard__key" data-num="dot" id="key-dot">.</div>
+        <div class="keyboard__key" data-num="0" id="key-0">0</div>
+        <div class="keyboard__key" data-op="div" id="key-div">/</div>
+        <div class="keyboard__key" data-op="mul" id="key-mul">x</div>
         <div class="keyboard__key" id="key-reset">RESET</div>
         <div class="keyboard__key" id="key-equal">=</div>
       </div>
