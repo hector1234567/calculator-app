@@ -116,6 +116,10 @@ main {
   background-color: var(--color-key-background-2);
 }
 
+.theme-switch__switch:hover [name="theme"]:checked + label:after {
+  background-color: var(--color-key-hover-2);
+}
+
 .theme-switch__background {
   background-color: var(--color-keypad-background);
   height: 2.4rem;
@@ -215,7 +219,7 @@ main {
   --color-screen-background: #ededed;
   --color-key-background-1: #377f86;
   --color-key-shadow-1: #1b5f65;
-  --color-key-hover-1: #a3b2e1;
+  --color-key-hover-1: #62b4bc;
   --color-key-background-2: #ca5502;
   --color-key-toggle-2: #ca5502;
   --color-key-shadow-2: #893901;

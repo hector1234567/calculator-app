@@ -37,6 +37,10 @@
         [name="theme"]:checked + label::after {
             background-color: var(--color-key-background-2);
         }
+
+        &:hover [name="theme"]:checked + label::after {
+            background-color: var(--color-key-hover-2);
+        }
     }
 
     &__background {
