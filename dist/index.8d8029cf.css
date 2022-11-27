@@ -1,0 +1,257 @@
+@font-face {
+  font-family: LeagueSpartan;
+  src: url("LeagueSpartan-VariableFont_wght.101fd966.ttf");
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--color-main-background);
+  font-size: 62.5%;
+}
+
+body {
+  font-family: LeagueSpartan, sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 0;
+  left: 50vw;
+  transform: translateX(-50%);
+}
+
+.calculator {
+  width: 54rem;
+  height: 70.8rem;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+.calculator .header {
+  height: 4.4rem;
+  color: var(--color-text-main);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.calculator .header h1 {
+  font-size: 3.2rem;
+}
+
+.calculator .screen {
+  height: 12.8rem;
+  background-color: var(--color-screen-background);
+  color: var(--color-text-main);
+  border-radius: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 3.2rem;
+  font-size: 5.6rem;
+  display: flex;
+}
+
+.calculator .keyboard {
+  height: 48rem;
+  background-color: var(--color-keypad-background);
+  border-radius: 1rem;
+}
+
+.theme-switch {
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  align-items: flex-end;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.theme-switch__title {
+  margin: .6rem 1rem;
+}
+
+.theme-switch__switch {
+  display: flex;
+}
+
+.theme-switch__switch [name="theme"] {
+  display: none;
+}
+
+.theme-switch__switch label {
+  height: 3.4rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 .4rem;
+  display: flex;
+}
+
+.theme-switch__switch label:after {
+  content: "";
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: var(--color-keypad-background);
+  border-radius: 50%;
+  display: block;
+}
+
+.theme-switch__switch [name="theme"]:checked + label:after {
+  background-color: var(--color-key-background-2);
+}
+
+.theme-switch__background {
+  background-color: var(--color-keypad-background);
+  height: 2.4rem;
+  border-radius: 1.2rem;
+  margin-top: -2rem;
+}
+
+.keyboard {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.4rem;
+  padding: 3.2rem 3rem;
+  display: grid;
+}
+
+.keyboard #key-del {
+  background-color: var(--color-key-background-1);
+  box-shadow: 0 .4rem var(--color-key-shadow-1);
+  color: var(--color-text-del);
+}
+
+.keyboard #key-reset {
+  background-color: var(--color-key-background-1);
+  box-shadow: 0 .4rem var(--color-key-shadow-1);
+  color: var(--color-text-del);
+  grid-column: 1 / 3;
+}
+
+.keyboard #key-equal {
+  background-color: var(--color-key-background-2);
+  box-shadow: 0 .4rem var(--color-key-shadow-2);
+  color: var(--color-text-equal);
+  grid-column: 3 / 5;
+}
+
+.keyboard__key {
+  color: var(--color-text-1);
+  background-color: var(--color-key-background-3);
+  box-shadow: 0 .4rem var(--color-key-shadow-3);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  letter-spacing: -.047rem;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: .5rem;
+  font-size: 2.8rem;
+  transition: all 50ms ease-out;
+  display: flex;
+}
+
+.keyboard__key:hover {
+  background-color: var(--color-key-hover-3);
+}
+
+.keyboard__key:hover#key-del, .keyboard__key:hover#key-reset {
+  background-color: var(--color-key-hover-1);
+}
+
+.keyboard__key:hover#key-equal {
+  background-color: var(--color-key-hover-2);
+}
+
+.keyboard__key:active {
+  box-shadow: none !important;
+  margin-top: .4rem !important;
+  margin-bottom: -.4rem !important;
+}
+
+:root {
+  --color-main-background: #3a4764;
+  --color-toggle-background: #232c43;
+  --color-keypad-background: #232c43;
+  --color-screen-background: #182034;
+  --color-key-background-1: #637097;
+  --color-key-shadow-1: #404e72;
+  --color-key-hover-1: #a3b2e1;
+  --color-key-background-2: #d03f2f;
+  --color-key-toggle-2: #d03f2f;
+  --color-key-shadow-2: #93261a;
+  --color-key-hover-2: #f96c5d;
+  --color-key-background-3: #eae3dc;
+  --color-key-shadow-3: #b4a597;
+  --color-key-hover-3: #fff;
+  --color-text-1: #444b5a;
+  --color-text-2: #fff;
+  --color-text-del: #fff;
+  --color-text-equal: #fff;
+  --color-text-main: #fff;
+  transition: all .5s;
+}
+
+:root:has(#theme-2:checked) {
+  --color-main-background: #e6e6e6;
+  --color-toggle-background: #d1cccc;
+  --color-keypad-background: #d1cccc;
+  --color-screen-background: #ededed;
+  --color-key-background-1: #377f86;
+  --color-key-shadow-1: #1b5f65;
+  --color-key-hover-1: #a3b2e1;
+  --color-key-background-2: #ca5502;
+  --color-key-toggle-2: #ca5502;
+  --color-key-shadow-2: #893901;
+  --color-key-hover-2: #f96c5d;
+  --color-key-background-3: #e5e4e1;
+  --color-key-shadow-3: #a69d91;
+  --color-key-hover-3: #fff;
+  --color-text-1: #35352c;
+  --color-text-2: #fff;
+  --color-text-del: #fff;
+  --color-text-equal: #fff;
+  --color-text-main: #35352c;
+}
+
+:root:has(#theme-3:checked) {
+  --color-main-background: #160628;
+  --color-toggle-background: #1d0934;
+  --color-keypad-background: #1d0934;
+  --color-screen-background: #1d0934;
+  --color-key-background-1: #58077d;
+  --color-key-shadow-1: #bc15f4;
+  --color-key-hover-1: #6c34ad;
+  --color-key-background-2: #00e0d1;
+  --color-key-toggle-2: #00e0d1;
+  --color-key-shadow-2: #6cf9f2;
+  --color-key-hover-2: #94fff8;
+  --color-key-background-3: #341c4f;
+  --color-key-shadow-3: #871c9c;
+  --color-key-hover-3: #8531af;
+  --color-text-1: #ffe53d;
+  --color-text-2: #ffe53d;
+  --color-text-del: #fff;
+  --color-text-equal: #1b2428;
+  --color-text-main: #ffe53d;
+}
+
+
+
+/*# sourceMappingURL=index.8d8029cf.css.map */

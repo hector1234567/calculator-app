@@ -1,0 +1,48 @@
+.theme-switch {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+
+    display: flex;
+    align-items: flex-end;
+
+    &__title {
+        margin: 0.6rem 1rem;
+    }
+
+    &__switch {
+        display: flex;
+
+        [name="theme"] {
+            display: none;
+        }
+
+        label {
+            margin: 0 .4rem;    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 3.4rem;
+            justify-content: space-between;
+            &::after {
+                content: '';
+                width: 1.6rem;
+                height: 1.6rem;
+                background-color: var(--color-keypad-background);
+                display: block;
+                border-radius: 50%;
+            }
+        }
+
+        [name="theme"]:checked + label::after {
+            background-color: var(--color-key-background-2);
+        }
+    }
+
+    &__background {
+        background-color: var(--color-keypad-background);
+        height: 2.4rem;
+        margin-top: -2rem;
+        border-radius: 1.2rem;
+    }
+}

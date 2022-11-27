@@ -1,0 +1,66 @@
+.keyboard {
+    padding: 3.2rem 3rem;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    column-gap: 2.4rem;
+    row-gap: 2.4rem;
+
+    #key-del {
+        background-color: var(--color-key-background-1);
+        box-shadow: 0 .4rem var(--color-key-shadow-1);
+        color: var(--color-text-del);
+    }
+
+    #key-reset {
+        grid-column: 1 / 3;
+        background-color: var(--color-key-background-1);
+        box-shadow: 0 .4rem var(--color-key-shadow-1);
+        color: var(--color-text-del);
+    }
+
+    #key-equal {
+        grid-column: 3 / 5;
+        background-color: var(--color-key-background-2);
+        box-shadow: 0 .4rem var(--color-key-shadow-2);
+        color: var(--color-text-equal);
+    }
+
+    &__key {
+        color: var(--color-text-1);
+        background-color: var(--color-key-background-3);
+        box-shadow: 0 .4rem var(--color-key-shadow-3);
+        border-radius: 1rem;
+        cursor: pointer;
+        user-select: none;
+        padding-top: .5rem;
+        font-size: 2.8rem;
+        letter-spacing: -.047rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: all .05s ease-out;
+
+        &:hover {
+            background-color: var(--color-key-hover-3);
+
+            &#key-del,
+            &#key-reset {
+                background-color: var(--color-key-hover-1);
+            }
+
+            &#key-equal {
+                background-color: var(--color-key-hover-2);
+            }
+        }
+
+        &:active {
+            box-shadow: none !important;
+            margin-top: .4rem !important;
+            margin-bottom: -.4rem !important;
+        }
+    }
+}

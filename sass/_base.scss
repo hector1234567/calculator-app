@@ -1,0 +1,23 @@
+@font-face {
+    font-family: LeagueSpartan;
+    src: url(../fonts/LeagueSpartan-VariableFont_wght.ttf);
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: var(--color-main-background);
+}
+
+body {
+    font-size: 3.2rem;
+    font-family: LeagueSpartan, sans-serif;
+    font-weight: 700;
+}

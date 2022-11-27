@@ -1,0 +1,79 @@
+:root {
+    --color-main-background: hsl(222, 26%, 31%);
+    --color-toggle-background: hsl(223, 31%, 20%);
+    --color-keypad-background: hsl(223, 31%, 20%);
+    --color-screen-background: hsl(224, 36%, 15%);
+
+    --color-key-background-1: hsl(225, 21%, 49%);
+    --color-key-shadow-1: hsl(224, 28%, 35%);
+    --color-key-hover-1: hsl(225, 51%, 76%);
+
+    --color-key-background-2: hsl(6, 63%, 50%);
+    --color-key-toggle-2: hsl(6, 63%, 50%);
+    --color-key-shadow-2: hsl(6, 70%, 34%);
+    --color-key-hover-2: hsl(6, 93%, 67%);
+
+    --color-key-background-3: hsl(30, 25%, 89%);
+    --color-key-shadow-3: hsl(28, 16%, 65%);
+    --color-key-hover-3: hsl(60, 100%, 100%);
+
+    --color-text-1: hsl(221, 14%, 31%);
+    --color-text-2: hsl(0, 0%, 100%);
+    --color-text-del: hsl(0, 0%, 100%);
+    --color-text-equal: hsl(0, 0%, 100%);
+    --color-text-main: hsl(0, 0%, 100%);
+
+    transition: all .5s ease;
+}
+
+:root:has(#theme-2:checked) {
+    --color-main-background: hsl(0, 0%, 90%);
+    --color-toggle-background: hsl(0, 5%, 81%);
+    --color-keypad-background: hsl(0, 5%, 81%);
+    --color-screen-background: hsl(0, 0%, 93%);
+
+    --color-key-background-1: hsl(185, 42%, 37%);
+    --color-key-shadow-1: hsl(185, 58%, 25%);
+    --color-key-hover-1: hsl(225, 51%, 76%);
+
+    --color-key-background-2: hsl(25, 98%, 40%);
+    --color-key-toggle-2: hsl(25, 98%, 40%);
+    --color-key-shadow-2: hsl(25, 99%, 27%);
+    --color-key-hover-2: hsl(6, 93%, 67%);
+
+    --color-key-background-3: hsl(45, 7%, 89%);
+    --color-key-shadow-3: hsl(35, 11%, 61%);
+    --color-key-hover-3: hsl(60, 100%, 100%);
+
+    --color-text-1: hsl(60, 10%, 19%);
+    --color-text-2: hsl(0, 0%, 100%);
+    --color-text-del: hsl(0, 0%, 100%);
+    --color-text-equal: hsl(0, 0%, 100%);
+    --color-text-main: hsl(60, 10%, 19%);
+}
+
+:root:has(#theme-3:checked) {
+    --color-main-background: hsl(268, 75%, 9%);
+    --color-toggle-background: hsl(268, 71%, 12%);
+    --color-keypad-background: hsl(268, 71%, 12%);
+    --color-screen-background: hsl(268, 71%, 12%);
+
+    --color-key-background-1: hsl(281, 89%, 26%);
+    --color-key-shadow-1: hsl(285, 91%, 52%);
+    --color-key-hover-1: hsl(268, 54%, 44%);
+
+    --color-key-background-2: hsl(176, 100%, 44%);
+    --color-key-toggle-2: hsl(176, 100%, 44%);
+    --color-key-shadow-2: hsl(177, 92%, 70%);
+    --color-key-hover-2: hsl(176, 100%, 79%);
+
+    --color-key-background-3: hsl(268, 47%, 21%);
+    --color-key-shadow-3: hsl(290, 70%, 36%);
+    --color-key-hover-3: hsl(280, 56%, 44%);
+
+    --color-text-1: hsl(52, 100%, 62%);
+    --color-text-2: hsl(52, 100%, 62%);
+    --color-text-del: hsl(0, 0%, 100%);
+    --color-text-equal: hsl(198, 20%, 13%);
+    --color-text-main: hsl(52, 100%, 62%);
+}
