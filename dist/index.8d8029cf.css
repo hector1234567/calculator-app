@@ -1,3 +1,70 @@
+:root {
+  --color-main-background: #3a4764;
+  --color-toggle-background: #232c43;
+  --color-keypad-background: #232c43;
+  --color-screen-background: #182034;
+  --color-key-background-1: #637097;
+  --color-key-shadow-1: #404e72;
+  --color-key-hover-1: #a3b2e1;
+  --color-key-background-2: #d03f2f;
+  --color-key-toggle-2: #d03f2f;
+  --color-key-shadow-2: #93261a;
+  --color-key-hover-2: #f96c5d;
+  --color-key-background-3: #eae3dc;
+  --color-key-shadow-3: #b4a597;
+  --color-key-hover-3: #fff;
+  --color-text-1: #444b5a;
+  --color-text-2: #fff;
+  --color-text-del: #fff;
+  --color-text-equal: #fff;
+  --color-text-main: #fff;
+  transition: all .5s;
+}
+
+:root:has(#theme-2:checked) {
+  --color-main-background: #e6e6e6;
+  --color-toggle-background: #d1cccc;
+  --color-keypad-background: #d1cccc;
+  --color-screen-background: #ededed;
+  --color-key-background-1: #377f86;
+  --color-key-shadow-1: #1b5f65;
+  --color-key-hover-1: #62b4bc;
+  --color-key-background-2: #ca5502;
+  --color-key-toggle-2: #ca5502;
+  --color-key-shadow-2: #893901;
+  --color-key-hover-2: #f96c5d;
+  --color-key-background-3: #e5e4e1;
+  --color-key-shadow-3: #a69d91;
+  --color-key-hover-3: #fff;
+  --color-text-1: #35352c;
+  --color-text-2: #fff;
+  --color-text-del: #fff;
+  --color-text-equal: #fff;
+  --color-text-main: #35352c;
+}
+
+:root:has(#theme-3:checked) {
+  --color-main-background: #160628;
+  --color-toggle-background: #1d0934;
+  --color-keypad-background: #1d0934;
+  --color-screen-background: #1d0934;
+  --color-key-background-1: #58077d;
+  --color-key-shadow-1: #bc15f4;
+  --color-key-hover-1: #6c34ad;
+  --color-key-background-2: #00e0d1;
+  --color-key-toggle-2: #00e0d1;
+  --color-key-shadow-2: #6cf9f2;
+  --color-key-hover-2: #94fff8;
+  --color-key-background-3: #341c4f;
+  --color-key-shadow-3: #871c9c;
+  --color-key-hover-3: #8531af;
+  --color-text-1: #ffe53d;
+  --color-text-2: #ffe53d;
+  --color-text-del: #fff;
+  --color-text-equal: #1b2428;
+  --color-text-main: #ffe53d;
+}
+
 @font-face {
   font-family: LeagueSpartan;
   src: url("LeagueSpartan-VariableFont_wght.101fd966.ttf");
@@ -214,73 +281,6 @@ main {
   box-shadow: none !important;
   margin-top: .4rem !important;
   margin-bottom: -.4rem !important;
-}
-
-:root {
-  --color-main-background: #3a4764;
-  --color-toggle-background: #232c43;
-  --color-keypad-background: #232c43;
-  --color-screen-background: #182034;
-  --color-key-background-1: #637097;
-  --color-key-shadow-1: #404e72;
-  --color-key-hover-1: #a3b2e1;
-  --color-key-background-2: #d03f2f;
-  --color-key-toggle-2: #d03f2f;
-  --color-key-shadow-2: #93261a;
-  --color-key-hover-2: #f96c5d;
-  --color-key-background-3: #eae3dc;
-  --color-key-shadow-3: #b4a597;
-  --color-key-hover-3: #fff;
-  --color-text-1: #444b5a;
-  --color-text-2: #fff;
-  --color-text-del: #fff;
-  --color-text-equal: #fff;
-  --color-text-main: #fff;
-  transition: all .5s;
-}
-
-:root:has(#theme-2:checked) {
-  --color-main-background: #e6e6e6;
-  --color-toggle-background: #d1cccc;
-  --color-keypad-background: #d1cccc;
-  --color-screen-background: #ededed;
-  --color-key-background-1: #377f86;
-  --color-key-shadow-1: #1b5f65;
-  --color-key-hover-1: #62b4bc;
-  --color-key-background-2: #ca5502;
-  --color-key-toggle-2: #ca5502;
-  --color-key-shadow-2: #893901;
-  --color-key-hover-2: #f96c5d;
-  --color-key-background-3: #e5e4e1;
-  --color-key-shadow-3: #a69d91;
-  --color-key-hover-3: #fff;
-  --color-text-1: #35352c;
-  --color-text-2: #fff;
-  --color-text-del: #fff;
-  --color-text-equal: #fff;
-  --color-text-main: #35352c;
-}
-
-:root:has(#theme-3:checked) {
-  --color-main-background: #160628;
-  --color-toggle-background: #1d0934;
-  --color-keypad-background: #1d0934;
-  --color-screen-background: #1d0934;
-  --color-key-background-1: #58077d;
-  --color-key-shadow-1: #bc15f4;
-  --color-key-hover-1: #6c34ad;
-  --color-key-background-2: #00e0d1;
-  --color-key-toggle-2: #00e0d1;
-  --color-key-shadow-2: #6cf9f2;
-  --color-key-hover-2: #94fff8;
-  --color-key-background-3: #341c4f;
-  --color-key-shadow-3: #871c9c;
-  --color-key-hover-3: #8531af;
-  --color-text-1: #ffe53d;
-  --color-text-2: #ffe53d;
-  --color-text-del: #fff;
-  --color-text-equal: #1b2428;
-  --color-text-main: #ffe53d;
 }
 
 

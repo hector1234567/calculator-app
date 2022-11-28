@@ -23,14 +23,34 @@ class Calc {
         return +this.screen + this.result;
     }
 
-    type(char) {
+    typeNumber(char) {
         if(this.screen === '0' && char !== '.') this.screen = '';
         if(char === '.') {
             if(this.hasDot) return;
             this.hasDot = true;
         }
+        this.#addCharToScreen(char);
+    }
+
+    #addCharToScreen(char) {
         this.screen = this.screen + char;
-        this.elemScreen.innerHTML = this.screen;
+        if(this.screen.length > 0) {
+            const [left, right] = this.screen.split('.');
+            const reversedLeft = this.#reverseString(left);
+            const leftWithCommas = this.#reverseString(reversedLeft.match(/.{1,3}/g).join(','));
+            this.elemScreen.innerHTML = right ? leftWithCommas + '.' + right : leftWithCommas;
+        }
+    }
+
+    deleteCharOnScreen() {
+        if(this.screen[this.screen.length - 1] === '.') this.hasDot = false;
+        this.screen = this.screen.slice(0, -1);
+        if(this.screen === '') this.screen = '0';
+        this.#addCharToScreen('');
+    }
+
+    #reverseString(str) {
+        return (str === '') ? '' : this.#reverseString(str.substr(1)) + str.charAt(0);
     }
 
     set operation(op) {
@@ -47,10 +67,13 @@ document.querySelector('.keyboard').addEventListener('click', function(ev) {
     if(!key) return;
     
     const num = key.dataset.num;
-    if(num === 'dot') return calc.type('.');
-    if(num) return calc.type(num);
+    if(num === 'dot') return calc.typeNumber('.');
+    if(num) return calc.typeNumber(num);
 
     const operation = key.dataset.op;
+    if(operation === 'del') {
+        return calc.deleteCharOnScreen();
+    }
     if(operation === 'add') {
         return calc.operation = 'add';
     }
