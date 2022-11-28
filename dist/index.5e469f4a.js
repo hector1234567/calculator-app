@@ -15,9 +15,6 @@ class Calc {
         this.result = 0;
         this.screen = "0";
     }
-    #add() {
-        return +this.screen + this.result;
-    }
     typeNumber(char) {
         if (this.screen === "0" && char !== ".") this.screen = "";
         if (char === ".") {
@@ -51,8 +48,24 @@ class Calc {
         return str === "" ? "" : this.#reverseString(str.substr(1)) + str.charAt(0);
     }
     set operation(op) {
-        this.result = this.screen;
-        this.operation = op;
+        this.result = this.#operate(+this.screen.split(",").join(""));
+        this.screen = "0";
+        this.#addCharToScreen("");
+        this._operation = op;
+        console.log(this.result);
+    }
+    #operate(num) {
+        console.log(this.result, num);
+        if (this._operation === "add") return this.result + num;
+        if (this._operation === "sub") return this.result - num;
+        if (this._operation === "mul") return this.result * num;
+        if (this._operation === "div") return this.result / num;
+        return num;
+    }
+    showResult() {
+        this.result = this.#operate(+this.screen.split(",").join(""));
+        this.screen = this.result;
+        this.#addCharToScreen("");
     }
 }
 const calc = new Calc(document.querySelector(".screen"));
@@ -65,7 +78,8 @@ document.querySelector(".keyboard").addEventListener("click", function(ev) {
     const operation = key.dataset.op;
     if (operation === "del") return calc.deleteCharOnScreen();
     if (operation === "reset") return calc.reset();
-    if (operation === "add") return calc.operation = "add";
+    if (operation === "equal") return calc.showResult();
+    return calc.operation = operation;
 });
 
 //# sourceMappingURL=index.5e469f4a.js.map
