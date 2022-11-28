@@ -49,6 +49,13 @@ class Calc {
         this.#addCharToScreen('');
     }
 
+    reset() {
+        this.result = 0;
+        this.screen = '0';
+        this.hasDot = false;
+        this.#addCharToScreen('');
+    }
+
     #reverseString(str) {
         return (str === '') ? '' : this.#reverseString(str.substr(1)) + str.charAt(0);
     }
@@ -73,6 +80,9 @@ document.querySelector('.keyboard').addEventListener('click', function(ev) {
     const operation = key.dataset.op;
     if(operation === 'del') {
         return calc.deleteCharOnScreen();
+    }
+    if(operation === 'reset') {
+        return calc.reset();
     }
     if(operation === 'add') {
         return calc.operation = 'add';
