@@ -32,7 +32,7 @@ export class Calculator {
     typeOperation(op) {
         if(this.op === null) {
             this.op = op;
-        } if(this.x === this.result) {
+        } else if(this.x === this.result) {
             this.y = null;
             this.op = op;
         }else {
@@ -86,6 +86,7 @@ export class Calculator {
             return this.x - this.y;
         }
         if(this.op === 'mul') {
+            console.log(this.x, this.y, this.x * this.y)
             return this.x * this.y;
         }
         if(this.op === 'div') {

@@ -682,7 +682,7 @@ class Calculator {
     }
     typeOperation(op) {
         if (this.op === null) this.op = op;
-        if (this.x === this.result) {
+        else if (this.x === this.result) {
             this.y = null;
             this.op = op;
         } else {
@@ -726,7 +726,10 @@ class Calculator {
     #operate() {
         if (this.op === "add") return this.x + this.y;
         if (this.op === "sub") return this.x - this.y;
-        if (this.op === "mul") return this.x * this.y;
+        if (this.op === "mul") {
+            console.log(this.x, this.y, this.x * this.y);
+            return this.x * this.y;
+        }
         if (this.op === "div") return this.x / this.y;
     }
 }
