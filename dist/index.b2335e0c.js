@@ -648,6 +648,7 @@ document.querySelector(".keyboard").addEventListener("click", function(ev) {
     const operation = key.dataset.op;
     if (operation === "equal") return calculator.typeEqual();
     if (operation === "reset") return calculator.reset();
+    if (operation === "del") return calculator.delete();
     return calculator.typeOperation(operation);
 });
 
@@ -703,6 +704,19 @@ class Calculator {
         this.op = null;
         this.result = 0;
         this.#elemScreen.innerHTML = "0";
+    }
+    delete() {
+        if (this.op === null) {
+            let xStr = this.x.toString();
+            xStr = xStr.substr(0, xStr.length - 1);
+            this.#renderScreen(xStr);
+            this.x = +xStr;
+        } else {
+            let yStr = this.y.toString();
+            yStr = yStr.substr(0, yStr.length - 1);
+            this.#renderScreen(yStr);
+            this.y = +yStr;
+        }
     }
     #renderScreen(val) {
         this.#elemScreen.innerHTML = val;

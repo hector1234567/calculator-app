@@ -143,5 +143,8 @@ document.querySelector('.keyboard').addEventListener('click', function(ev) {
     if(operation === 'reset') {
         return calculator.reset();
     }
+    if(operation === 'del') {
+        return calculator.delete();
+    }
     return calculator.typeOperation(operation);
 })
