@@ -140,5 +140,8 @@ document.querySelector('.keyboard').addEventListener('click', function(ev) {
     if(operation === 'equal') {
         return calculator.typeEqual();
     }
+    if(operation === 'reset') {
+        return calculator.reset();
+    }
     return calculator.typeOperation(operation);
 })

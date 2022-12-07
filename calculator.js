@@ -27,9 +27,6 @@ export class Calculator {
             this.#renderScreen(yStr);
             this.y = +yStr;
         }
-
-
-        console.dir(this)
     }
 
     typeOperation(op) {
@@ -45,14 +42,20 @@ export class Calculator {
             this.#renderScreen(this.result);
             this.op = op;
         }
-        
-        console.dir(this)
     }
 
     typeEqual() {
         this.result = this.#operate();
         this.x = this.result;
         this.#renderScreen(this.result);
+    }
+
+    reset() {
+        this.x = null;
+        this.y = null;
+        this.op = null;
+        this.result = 0;
+        this.#elemScreen.innerHTML = '0';
     }
 
     #renderScreen(val) {

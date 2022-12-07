@@ -647,6 +647,7 @@ document.querySelector(".keyboard").addEventListener("click", function(ev) {
     if (num) return calculator.typeNumber(num);
     const operation = key.dataset.op;
     if (operation === "equal") return calculator.typeEqual();
+    if (operation === "reset") return calculator.reset();
     return calculator.typeOperation(operation);
 });
 
@@ -677,7 +678,6 @@ class Calculator {
             this.#renderScreen(yStr);
             this.y = +yStr;
         }
-        console.dir(this);
     }
     typeOperation(op) {
         if (this.op === null) this.op = op;
@@ -691,12 +691,18 @@ class Calculator {
             this.#renderScreen(this.result);
             this.op = op;
         }
-        console.dir(this);
     }
     typeEqual() {
         this.result = this.#operate();
         this.x = this.result;
         this.#renderScreen(this.result);
+    }
+    reset() {
+        this.x = null;
+        this.y = null;
+        this.op = null;
+        this.result = 0;
+        this.#elemScreen.innerHTML = "0";
     }
     #renderScreen(val) {
         this.#elemScreen.innerHTML = val;
