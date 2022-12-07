@@ -62,11 +62,13 @@ export class Calculator {
         if(this.op === null) {
             let xStr = this.x.toString();
             xStr = xStr.substr(0, xStr.length - 1);
+            if(xStr === '') xStr = '0';
             this.#renderScreen(xStr);
             this.x = +xStr;
         } else {
             let yStr = this.y.toString();
             yStr = yStr.substr(0, yStr.length - 1);
+            if(yStr === '') yStr = '0';
             this.#renderScreen(yStr);
             this.y = +yStr;
         }
