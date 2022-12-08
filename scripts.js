@@ -16,8 +16,6 @@ if(theme) {
 // Calculator
 const calculator = new Calculator(document.querySelector('.screen span'));
 
-console.log(calculator)
-
 document.querySelector('.keyboard').addEventListener('click', function(ev) {
     const key = ev.target.closest('.keyboard__key');
 

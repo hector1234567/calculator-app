@@ -74,7 +74,6 @@ export class Calculator {
         } else if(val[0] === '.') {
             this.#elemScreen.innerHTML = '0' + val;
         } else {
-            console.log(val, typeof(val))
             const [left, right] = val.split('.');
             const reversedLeft = this.#reverseString(left);
             const leftWithCommas = this.#reverseString(reversedLeft.match(/.{1,3}/g).join(','));
