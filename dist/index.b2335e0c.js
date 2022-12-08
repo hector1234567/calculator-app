@@ -532,7 +532,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"f47v6":[function(require,module,exports) {
-var _calculator = require("./calculator");
+var _calculator2 = require("./calculator2");
 // REMEMBER THEME ON SESSION STORAGE
 const themeSwitches = document.querySelectorAll('[name="theme"]');
 themeSwitches.forEach((theme)=>theme.addEventListener("change", function(ev) {
@@ -637,13 +637,13 @@ if (theme) {
 //     }
 //     return calc.operation = operation;
 // })
-const calculator = new (0, _calculator.Calculator)(document.querySelector(".screen"));
+const calculator = new (0, _calculator2.Calculator)(document.querySelector(".screen"));
 console.log(calculator);
 document.querySelector(".keyboard").addEventListener("click", function(ev) {
     const key = ev.target.closest(".keyboard__key");
     if (!key) return;
     const num = key.dataset.num;
-    if (num === "dot") return calculator.typeNumber(".");
+    if (num === "dot") return calculator.typeNumber("dot");
     if (num) return calculator.typeNumber(num);
     const operation = key.dataset.op;
     if (operation === "equal") return calculator.typeEqual();
@@ -652,12 +652,14 @@ document.querySelector(".keyboard").addEventListener("click", function(ev) {
     return calculator.typeOperation(operation);
 });
 
-},{"./calculator":"gVIH0"}],"gVIH0":[function(require,module,exports) {
+},{"./calculator2":"jTOFN"}],"jTOFN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Calculator", ()=>Calculator);
 class Calculator {
     #elemScreen;
+    #_wbuff = "";
+    #dot = false;
     constructor(elemScreen){
         this.#elemScreen = elemScreen;
         this.x = null;
@@ -666,38 +668,34 @@ class Calculator {
         this.result = 0;
     }
     typeNumber(num) {
-        if (this.op === null) {
-            let xStr = "";
-            if (this.x !== null) xStr = xStr + this.x.toString();
-            xStr = xStr + num.toString();
-            this.#renderScreen(xStr);
-            this.x = +xStr;
+        if (num === "dot") {
+            if (this.#wbuff.includes(".")) return;
+            this.#dot = true;
+        } else if (this.#dot) {
+            this.#wbuff = this.#wbuff + "." + num.toString();
+            this.#renderScreen(this.#wbuff);
+            this.#dot = false;
         } else {
-            let yStr = "";
-            if (this.y !== null) yStr = yStr + this.y.toString();
-            yStr = yStr + num.toString();
-            this.#renderScreen(yStr);
-            this.y = +yStr;
+            this.#wbuff = this.#wbuff + num.toString();
+            this.#renderScreen(this.#wbuff);
         }
+        console.dir(this);
     }
     typeOperation(op) {
-        if (this.op === null) this.op = op;
-        else if (this.x === this.result) {
-            this.y = null;
-            this.op = op;
-        } else {
+        this.op = op;
+        if (this.#wbuff === "") return;
+        if (this.x === null) this.x = +this.#wbuff;
+        else {
+            this.y = +this.#wbuff;
             this.result = this.#operate();
+            this.#renderScreen(this.result);
             this.x = this.result;
             this.y = null;
-            this.#renderScreen(this.result);
-            this.op = op;
         }
+        this.#wbuff = "";
+        console.dir(this);
     }
-    typeEqual() {
-        this.result = this.#operate();
-        this.x = this.result;
-        this.#renderScreen(this.result);
-    }
+    typeEqual() {}
     reset() {
         this.x = null;
         this.y = null;
@@ -706,31 +704,27 @@ class Calculator {
         this.#elemScreen.innerHTML = "0";
     }
     delete() {
-        if (this.op === null) {
-            let xStr = this.x.toString();
-            xStr = xStr.substr(0, xStr.length - 1);
-            if (xStr === "") xStr = "0";
-            this.#renderScreen(xStr);
-            this.x = +xStr;
-        } else {
-            let yStr = this.y.toString();
-            yStr = yStr.substr(0, yStr.length - 1);
-            if (yStr === "") yStr = "0";
-            this.#renderScreen(yStr);
-            this.y = +yStr;
-        }
+        this.#wbuff = this.#wbuff.substring(0, this.#wbuff.length - 1);
+        this.#renderScreen(this.#wbuff);
+        this.#dot = false;
     }
     #renderScreen(val) {
-        this.#elemScreen.innerHTML = val;
+        if (val === "") this.#elemScreen.innerHTML = "0";
+        else if (val[0] === ".") this.#elemScreen.innerHTML = "0" + val;
+        else this.#elemScreen.innerHTML = val;
     }
     #operate() {
         if (this.op === "add") return this.x + this.y;
         if (this.op === "sub") return this.x - this.y;
-        if (this.op === "mul") {
-            console.log(this.x, this.y, this.x * this.y);
-            return this.x * this.y;
-        }
+        if (this.op === "mul") return this.x * this.y;
         if (this.op === "div") return this.x / this.y;
+    }
+    set #wbuff(val1) {
+        if (val1 === "0") return;
+        this.#_wbuff = val1;
+    }
+    get #wbuff() {
+        return this.#_wbuff;
     }
 }
 

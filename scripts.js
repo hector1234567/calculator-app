@@ -1,4 +1,4 @@
-import { Calculator } from "./calculator";
+import { Calculator } from "./calculator2";
 
 // REMEMBER THEME ON SESSION STORAGE
 const themeSwitches = document.querySelectorAll('[name="theme"]');
@@ -133,7 +133,7 @@ document.querySelector('.keyboard').addEventListener('click', function(ev) {
     if(!key) return;
     
     const num = key.dataset.num;
-    if(num === 'dot') return calculator.typeNumber('.');
+    if(num === 'dot') return calculator.typeNumber('dot');
     if(num) return calculator.typeNumber(num);
 
     const operation = key.dataset.op;
