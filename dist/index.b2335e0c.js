@@ -532,7 +532,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"f47v6":[function(require,module,exports) {
-var _calculator2 = require("./calculator2");
+var _calculator = require("./calculator");
 // REMEMBER THEME ON SESSION STORAGE
 const themeSwitches = document.querySelectorAll('[name="theme"]');
 themeSwitches.forEach((theme)=>theme.addEventListener("change", function(ev) {
@@ -543,101 +543,8 @@ if (theme) {
     const themeSwitch = document.getElementById(theme);
     themeSwitch.setAttribute("checked", true);
 }
-// CALC
-// class Calc {
-//     constructor(elemScreen) {
-//         this.elemScreen = elemScreen;
-//         this.result = 0;
-//         this.op1 = 0;
-//         this.op2 = 0;
-//         this.screen = '0';
-//         this.operation = null;
-//     }
-//     typeNumber(char) {
-//         if(this.screen === '0' && char !== '.') this.screen = '';
-//         if(char === '.') {
-//             if(this.hasDot) return;
-//             this.hasDot = true;
-//         }
-//         this.#addCharToScreen(char);
-//     }
-//     #addCharToScreen(char) {
-//         this.screen = this.screen + char;
-//         this.render();
-//     }
-//     render() {
-//         if(this.screen.length === 0) return;
-//         const [left, right] = this.screen.split('.');
-//         const reversedLeft = this.#reverseString(left);
-//         const leftWithCommas = this.#reverseString(reversedLeft.match(/.{1,3}/g).join(','));
-//         this.elemScreen.innerHTML = right ? leftWithCommas + '.' + right : leftWithCommas;
-//     }
-//     deleteCharOnScreen() {
-//         if(this.screen[this.screen.length - 1] === '.') this.hasDot = false;
-//         this.screen = this.screen.slice(0, -1);
-//         if(this.screen === '') this.screen = '0';
-//         this.render();
-//     }
-//     reset() {
-//         this.result = 0;
-//         this.screen = '0';
-//         this.hasDot = false;
-//         this.render();
-//     }
-//     #reverseString(str) {
-//         return (str === '') ? '' : this.#reverseString(str.substr(1)) + str.charAt(0);
-//     }
-//     // set operation(op) {
-//     //     this.result = this.#operate(+this.screen.split(',').join(''));
-//     //     this.screen = '0';
-//     //     this.render();
-//     //     this._operation = op;
-//     //     console.log(this.result)
-//     // }
-//     #operate() {
-//         if(this._operation === 'add') {
-//             return this.op1 + this.op2;
-//         } 
-//         if(this._operation === 'sub') {
-//             return this.op1 - this.op2;
-//         } 
-//         if(this._operation === 'mul') {
-//             return this.op1 * this.op2;
-//         } 
-//         if(this._operation === 'div') {
-//             return this.op1 / this.op2;
-//         } 
-//         return num;
-//     }
-//     showResult() {
-//         this.op2 = +this.screen.split(',').join('');
-//         this.result = this.#operate();
-//         this.screen = '' + this.result;
-//         this.render();
-//         this.screen = '0';
-//         this.op1 = this.result;
-//     }
-// }
-// const calc = new Calc(document.querySelector('.screen'));
-// document.querySelector('.keyboard').addEventListener('click', function(ev) {
-//     const key = ev.target.closest('.keyboard__key');
-//     if(!key) return;
-//     const num = key.dataset.num;
-//     if(num === 'dot') return calc.typeNumber('.');
-//     if(num) return calc.typeNumber(num);
-//     const operation = key.dataset.op;
-//     if(operation === 'del') {
-//         return calc.deleteCharOnScreen();
-//     }
-//     if(operation === 'reset') {
-//         return calc.reset();
-//     }
-//     if(operation === 'equal') {
-//         return calc.showResult();
-//     }
-//     return calc.operation = operation;
-// })
-const calculator = new (0, _calculator2.Calculator)(document.querySelector(".screen"));
+// Calculator
+const calculator = new (0, _calculator.Calculator)(document.querySelector(".screen span"));
 console.log(calculator);
 document.querySelector(".keyboard").addEventListener("click", function(ev) {
     const key = ev.target.closest(".keyboard__key");
@@ -652,7 +559,7 @@ document.querySelector(".keyboard").addEventListener("click", function(ev) {
     return calculator.typeOperation(operation);
 });
 
-},{"./calculator2":"jTOFN"}],"jTOFN":[function(require,module,exports) {
+},{"./calculator":"gVIH0"}],"gVIH0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Calculator", ()=>Calculator);
@@ -665,9 +572,10 @@ class Calculator {
         this.x = null;
         this.y = null;
         this.op = null;
-        this.result = 0;
+        this.result = null;
     }
     typeNumber(num) {
+        if (this.result !== null) this.reset();
         if (num === "dot") {
             if (this.#wbuff.includes(".")) return;
             this.#dot = true;
@@ -679,29 +587,38 @@ class Calculator {
             this.#wbuff = this.#wbuff + num.toString();
             this.#renderScreen(this.#wbuff);
         }
-        console.dir(this);
     }
     typeOperation(op) {
         this.op = op;
         if (this.#wbuff === "") return;
         if (this.x === null) this.x = +this.#wbuff;
-        else {
+        else if (this.result === null) {
             this.y = +this.#wbuff;
-            this.result = this.#operate();
-            this.#renderScreen(this.result);
-            this.x = this.result;
+            this.x = this.#operate();
+            this.#renderScreen(this.x.toString());
+            this.result = null;
+            this.y = null;
+        } else {
+            this.result = null;
             this.y = null;
         }
         this.#wbuff = "";
-        console.dir(this);
     }
-    typeEqual() {}
+    typeEqual() {
+        if (this.x === null) return;
+        if (this.y === null) this.y = +this.#wbuff;
+        this.result = this.#operate();
+        this.x = this.result;
+        this.#renderScreen(this.result.toString());
+    }
     reset() {
         this.x = null;
         this.y = null;
         this.op = null;
-        this.result = 0;
+        this.result = null;
         this.#elemScreen.innerHTML = "0";
+        this.#wbuff = "";
+        this.#dot = false;
     }
     delete() {
         this.#wbuff = this.#wbuff.substring(0, this.#wbuff.length - 1);
@@ -711,7 +628,16 @@ class Calculator {
     #renderScreen(val) {
         if (val === "") this.#elemScreen.innerHTML = "0";
         else if (val[0] === ".") this.#elemScreen.innerHTML = "0" + val;
-        else this.#elemScreen.innerHTML = val;
+        else {
+            console.log(val, typeof val);
+            const [left, right] = val.split(".");
+            const reversedLeft = this.#reverseString(left);
+            const leftWithCommas = this.#reverseString(reversedLeft.match(/.{1,3}/g).join(","));
+            this.#elemScreen.innerHTML = right ? leftWithCommas + "." + right : leftWithCommas;
+        }
+    }
+    #reverseString(str) {
+        return str === "" ? "" : this.#reverseString(str.substr(1)) + str.charAt(0);
     }
     #operate() {
         if (this.op === "add") return this.x + this.y;

@@ -1,81 +1,89 @@
 export class Calculator {
     #elemScreen
+    #_wbuff = '';
+    #dot = false;
 
     constructor(elemScreen) {
         this.#elemScreen = elemScreen; 
         this.x = null;
         this.y = null;
         this.op = null;
-        this.result = 0;
+        this.result = null;
     }
 
     typeNumber(num) {
-        if(this.op === null) {
-            let xStr = '';
-    
-            if(this.x !== null) xStr = xStr + this.x.toString();
-    
-            xStr = xStr + num.toString();
-            this.#renderScreen(xStr);
-            this.x = +xStr;
+        if(this.result !== null) this.reset();
+        if(num === 'dot') {
+            if(this.#wbuff.includes('.')) return;
+            this.#dot = true;
+        } else if(this.#dot) {
+            this.#wbuff = this.#wbuff + '.' + num.toString();
+            this.#renderScreen(this.#wbuff);
+            this.#dot = false;
         } else {
-            let yStr = '';
-    
-            if(this.y !== null) yStr = yStr + this.y.toString();
-    
-            yStr = yStr + num.toString();
-            this.#renderScreen(yStr);
-            this.y = +yStr;
+            this.#wbuff = this.#wbuff + num.toString();
+            this.#renderScreen(this.#wbuff);
         }
     }
 
     typeOperation(op) {
-        if(this.op === null) {
-            this.op = op;
-        } else if(this.x === this.result) {
+        this.op = op;
+        if(this.#wbuff === '') return;
+        if(this.x === null) {
+            this.x = +this.#wbuff;
+        } else if(this.result === null) {
+            this.y = +this.#wbuff;
+            this.x = this.#operate();
+            this.#renderScreen(this.x.toString());
+            this.result = null;
             this.y = null;
-            this.op = op;
-        }else {
-            this.result = this.#operate();
-            this.x = this.result;
+        } else {
+            this.result = null;
             this.y = null;
-            this.#renderScreen(this.result);
-            this.op = op;
         }
+        this.#wbuff = '';
     }
 
     typeEqual() {
+        if(this.x === null) return;
+        if(this.y === null) this.y = +this.#wbuff;
         this.result = this.#operate();
         this.x = this.result;
-        this.#renderScreen(this.result);
+        this.#renderScreen(this.result.toString());
     }
 
     reset() {
         this.x = null;
         this.y = null;
         this.op = null;
-        this.result = 0;
+        this.result = null;
         this.#elemScreen.innerHTML = '0';
+        this.#wbuff = '';
+        this.#dot = false;
     }
 
     delete() {
-        if(this.op === null) {
-            let xStr = this.x.toString();
-            xStr = xStr.substr(0, xStr.length - 1);
-            if(xStr === '') xStr = '0';
-            this.#renderScreen(xStr);
-            this.x = +xStr;
-        } else {
-            let yStr = this.y.toString();
-            yStr = yStr.substr(0, yStr.length - 1);
-            if(yStr === '') yStr = '0';
-            this.#renderScreen(yStr);
-            this.y = +yStr;
-        }
+        this.#wbuff = this.#wbuff.substring(0, this.#wbuff.length - 1);
+        this.#renderScreen(this.#wbuff);
+        this.#dot = false;
     }
 
     #renderScreen(val) {
-        this.#elemScreen.innerHTML = val;
+        if(val === '') {
+            this.#elemScreen.innerHTML = '0';
+        } else if(val[0] === '.') {
+            this.#elemScreen.innerHTML = '0' + val;
+        } else {
+            console.log(val, typeof(val))
+            const [left, right] = val.split('.');
+            const reversedLeft = this.#reverseString(left);
+            const leftWithCommas = this.#reverseString(reversedLeft.match(/.{1,3}/g).join(','));
+            this.#elemScreen.innerHTML = right ? leftWithCommas + '.' + right : leftWithCommas;
+        }
+    }
+
+    #reverseString(str) {
+        return (str === '') ? '' : this.#reverseString(str.substr(1)) + str.charAt(0);
     }
 
     #operate() {
@@ -86,11 +94,19 @@ export class Calculator {
             return this.x - this.y;
         }
         if(this.op === 'mul') {
-            console.log(this.x, this.y, this.x * this.y)
             return this.x * this.y;
         }
         if(this.op === 'div') {
             return this.x / this.y;
         }
+    }
+
+    set #wbuff(val) {
+        if(val === '0') return;
+        this.#_wbuff = val;
+    }
+
+    get #wbuff() {
+        return this.#_wbuff;
     }
 }

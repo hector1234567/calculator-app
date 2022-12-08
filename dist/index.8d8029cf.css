@@ -90,9 +90,25 @@ main {
   border-radius: 1rem;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 3.2rem;
   font-size: 5.6rem;
   display: flex;
+}
+
+.calculator .screen span {
+  margin: .5rem 3.2rem 0;
+  overflow-x: scroll;
+}
+
+.calculator .screen span::-webkit-scrollbar {
+  height: .5rem;
+}
+
+.calculator .screen span::-webkit-scrollbar-thumb {
+  background: var(--color-key-background-1);
+}
+
+.calculator .screen span::-webkit-scrollbar-thumb:hover {
+  background: var(--color-key-hover-1);
 }
 
 .calculator .keyboard {

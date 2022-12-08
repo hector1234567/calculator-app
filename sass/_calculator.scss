@@ -23,12 +23,27 @@
         background-color: var(--color-screen-background);
         font-size: 5.6rem;
         color: var(--color-text-main);
-        padding: 0 3.2rem;
         border-radius: 1rem;
 
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
+        span {
+            margin: .5rem 3.2rem 0 3.2rem;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                height: .5rem;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: var(--color-key-background-1);
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: var(--color-key-hover-1);
+            }
+        }
     }
 
     .keyboard {
